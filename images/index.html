@@ -1,12 +1,410 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duc-Tien Mai</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duc-Tien Mai</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F2EC;
+    --ink: #1A1814;
+    --muted: #6B6760;
+    --accent: #C8502A;
+    --border: #DDD9D0;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 90vh;
+  }
+
+  .hero-text {
+    padding: 5rem 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+
+  .tagline {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 400px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.85rem 2rem;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--accent); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--border);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { border-color: var(--ink); }
+
+  .hero-visual {
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .initials-block {
+    font-family: 'Playfair Display', serif;
+    font-size: 10rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.06);
+    letter-spacing: -0.05em;
+    user-select: none;
+    position: absolute;
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2rem;
+    z-index: 1;
+    max-width: 260px;
+    width: 100%;
+  }
+
+  .hero-card-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-card-name {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-card-role {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-card-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-card-stat {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-card-stat span:last-child {
+    color: #fff;
+    font-weight: 500;
+  }
+
+  section.about {
+    padding: 6rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    padding-top: 0.25rem;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  .about-text p + p { margin-top: 1rem; }
+
+  section.services {
+    padding: 6rem 3rem;
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .services-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .service-card {
+    background: var(--ink);
+    padding: 2.5rem 2rem;
+    transition: background 0.2s;
+  }
+
+  .service-card:hover { background: #252219; }
+
+  .service-num {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+
+  .service-desc {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .contact-strip {
+    padding: 4rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-strip h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  footer {
+    padding: 1.5rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-text > * {
+    animation: fadeUp 0.6s ease both;
+  }
+  .eyebrow { animation-delay: 0.1s; }
+  h1 { animation-delay: 0.2s; }
+  .tagline { animation-delay: 0.3s; }
+  .cta-row { animation-delay: 0.4s; }
+</style>
 </head>
 <body>
-    
-    <h1>Hello World</h1>
+
+<nav>
+  <div class="logo">DTM</div>
+  <ul class="nav-links">
+    <li><a href="#">Über mich</a></li>
+    <li><a href="#">Leistungen</a></li>
+    <li><a href="#">Projekte</a></li>
+    <li><a href="#">Kontakt</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Verfügbar für Aufträge</p>
+    <h1>Duc-Tien<br>Mai</h1>
+    <p class="tagline">Ich helfe Unternehmen und Einzelpersonen dabei, ihre Ziele zu erreichen – mit Einsatz, Sorgfalt und Leidenschaft.</p>
+    <div class="cta-row">
+      <a href="#" class="btn-primary">Kontakt aufnehmen</a>
+      <a href="#" class="btn-ghost">Mehr erfahren</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="initials-block">DTM</div>
+    <div class="hero-card">
+      <div class="hero-card-label">Profil</div>
+      <div class="hero-card-name">Duc-Tien Mai</div>
+      <div class="hero-card-role">Verfügbar für Aufträge</div>
+      <div class="hero-card-divider"></div>
+      <div class="hero-card-stat"><span>Status</span><span>Offen für Projekte</span></div>
+      <div class="hero-card-stat"><span>Standort</span><span>Deutschland</span></div>
+      <div class="hero-card-stat"><span>Sprachen</span><span>DE / EN</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="section-label">Über mich</div>
+  <div class="about-text">
+    <p>Hallo, ich bin Duc-Tien – ich suche aktuell nach Projekten und Aufträgen, bei denen ich meine Fähigkeiten einbringen und echten Mehrwert schaffen kann.</p>
+    <p>Ich arbeite sorgfältig, verlässlich und mit echtem Engagement. Ob kurzes Projekt oder langfristige Zusammenarbeit – ich freue mich auf spannende Aufgaben.</p>
+  </div>
+</section>
+
+<section class="services">
+  <div class="services-header">
+    <h2>Leistungen</h2>
+    <p style="color:rgba(255,255,255,0.35); font-size:0.85rem; max-width:220px; text-align:right; line-height:1.5;">Was ich für dich tun kann</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-title">Leistung A</div>
+      <div class="service-desc">Hier kannst du beschreiben, was du anbietest – z.B. deine Hauptkompetenz oder ein konkretes Angebot.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-title">Leistung B</div>
+      <div class="service-desc">Weitere Fähigkeit oder Dienstleistung, die du deinen Kunden anbieten möchtest.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-title">Leistung C</div>
+      <div class="service-desc">Ein drittes Angebot – oder wir passen die Anzahl später noch an deine Situation an.</div>
+    </div>
+  </div>
+</section>
+
+<div class="contact-strip">
+  <h2>Lass uns reden.</h2>
+  <a href="mailto:deine@email.de" class="btn-primary">E-Mail schreiben</a>
+</div>
+
+<footer>
+  <p>© 2026 Duc-Tien Mai</p>
+  <p>Bereit für neue Projekte</p>
+</footer>
+
 </body>
 </html>
